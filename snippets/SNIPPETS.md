@@ -1,0 +1,1 @@
+Directory for useful Rust snippets that can be used in projects.

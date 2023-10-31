@@ -1,0 +1,1 @@
+Directory for notes and interesting findings while learning Rust.
