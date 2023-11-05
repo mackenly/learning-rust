@@ -2,4 +2,5 @@
 
 members = [
     "projects/person-manager",
+    "projects/lost-crypto-drive",
 ]
