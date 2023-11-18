@@ -1,0 +1,1 @@
+This directory contains various projects. Not in any particular order.
