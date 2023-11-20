@@ -10,26 +10,27 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  check-changes:
+  check-commit:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
-      run-job: ${{ steps.filter.outputs.run }}
+      run-job: ${{ steps.path-check.outputs.result }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       
-      - name: Check for file changes
-        id: filter
-        uses: dorny/paths-filter@v2
-        with:
-          filters: |
-            changes:
-              - 'projects/cloudflare_worker_hello_rust/**'
+      - name: Check for file changes in the commit
+        id: path-check
+        run: |
+          if git diff --name-only HEAD~1 HEAD | grep -q 'projects/cloudflare_worker_hello_rust'; then
+            echo "::set-output name=result::true"
+          else
+            echo "::set-output name=result::false"
+          fi
 
   deploy:
-    needs: check-changes
-    if: needs.check-changes.outputs.run-job == 'true'
+    needs: check-commit
+    if: needs.check-commit.outputs.run-job == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     name: Deploy Worker Hello Rust
