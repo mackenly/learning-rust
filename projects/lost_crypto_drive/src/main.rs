@@ -108,3 +108,38 @@ fn prompt_for_input(prompt: &str) -> String {
     clear_screen();
     input.trim().to_string()
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_get_date_from_five_years_ago() {
+        let now: chrono::DateTime<Local> = Local::now();
+        let five_years_ago: chrono::DateTime<Local> = now - Duration::days(1825);
+        let five_years_ago: String = five_years_ago.format("%d-%m-%Y").to_string();
+        assert_eq!(get_date_from_five_years_ago(), five_years_ago);
+    }
+
+    #[tokio::test]
+    async fn test_get_price() {
+        assert_eq!(
+            get_price("bitcoin".to_string(), "18-11-2023".to_string())
+                .await
+                .unwrap(),
+            36527.76022530742
+        );
+        assert_eq!(
+            get_price("ethereum".to_string(), "18-11-2023".to_string())
+                .await
+                .unwrap(),
+            1956.5174321166123
+        );
+        assert_eq!(
+            get_price("dogecoin".to_string(), "18-11-2023".to_string())
+                .await
+                .unwrap(),
+            0.08602320148882048
+        );
+    }
+}
