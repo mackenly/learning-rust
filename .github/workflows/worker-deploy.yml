@@ -5,32 +5,22 @@ on:
     workflows: ["Rust Tests"]
     types:
       - completed
+  push:
+    paths:
+      - 'projects/cloudflare_worker_hello_rust/**'
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  check-commit:
+  do-nothing:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-    outputs:
-      run-job: ${{ steps.path-check.outputs.result }}
+    name: Do Nothing
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      
-      - name: Check for file changes in the commit
-        id: path-check
-        run: |
-          if git diff --name-only HEAD~1 HEAD | grep -q 'projects/cloudflare_worker_hello_rust'; then
-            echo "result=true" >> $GITHUB_ENV
-          else
-            echo "result=false" >> $GITHUB_ENV
-          fi
-
+      - name: Do Nothing
+        run: echo "Do Nothing"
   deploy:
-    needs: check-commit
-    if: needs.check-commit.outputs.run-job == 'true'
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     name: Deploy Worker Hello Rust
