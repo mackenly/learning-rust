@@ -1,5 +1,5 @@
 # learning-rust
-[![Tests](https://github.com/mackenly/learning-rust/actions/workflows/rust.yml/badge.svg)](https://github.com/mackenly/learning-rust/actions/workflows/rust.yml)
+[![Tests](https://github.com/mackenly/learning-rust/actions/workflows/rust-tests.yml/badge.svg)](https://github.com/mackenly/learning-rust/actions/workflows/rust-tests.yml)
 
 Learning, demos, and experiments with Rust
 
