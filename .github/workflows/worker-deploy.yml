@@ -1,0 +1,27 @@
+name: Deploy Cloudflare Worker
+
+on:
+  push:
+    branches: [ "main" ]
+#    paths: [ 'link-shortener/**' ]
+  pull_request:
+    branches: [ "main" ]
+#    paths: [ 'link-shortener/**' ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    name: Deploy Worker Hello Rust
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+          workingDirectory: "projects/cloudflare_worker_hello_rust"

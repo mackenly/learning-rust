@@ -16,3 +16,8 @@ Cargo.lock
 
 # Ignore database file(s)
 *.db
+
+# Wrangler
+.wrangler/
+build/
+node_modules/
