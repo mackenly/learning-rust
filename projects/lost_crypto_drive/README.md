@@ -1,4 +1,4 @@
-# lost-crypto-drive
+# lost_crypto_drive
 A unique approach to a common learning project. 
 
 We've all heard it before, "If I only knew where I put that hard drive! I had to have had hundreds of bitcoins on it!" Well, now you can see how much you allegedly lost with this tool, which shows how much an investment five years ago would be worth today.

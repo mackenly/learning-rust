@@ -1,2 +1,2 @@
-# person-manager
+# person_manager
 Sorta CRM? Mostly just learning how to use SQLite with Rust.

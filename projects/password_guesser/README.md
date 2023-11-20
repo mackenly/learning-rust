@@ -1,4 +1,4 @@
-# password-guesser
+# password_guesser
 Asks a few questions about a password's rules, then generates every possible password that fits those rules. Useful for dictionary attacks.
 
 - Might do something with sorting the most likely passwords.

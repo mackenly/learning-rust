@@ -6,7 +6,7 @@ Hi, my name is [Mackenly Jones](https://mackenly.com) and I'm a full stack softw
 
 ## Structure
 - `projects/` - Rust projects
-    - `hello-rust/` 
+    - `hello_rust/` 
     <br>...
 - `snippets/` - Rust snippets
 - `notes/` - Rust notes

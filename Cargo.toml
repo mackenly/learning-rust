@@ -1,6 +1,9 @@
 [workspace]
+resolver = "2"
 
 members = [
-    "projects/person-manager",
-    "projects/lost-crypto-drive",
+    "projects/hello_rust",
+    "projects/person_manager",
+    "projects/lost_crypto_drive",
+    "projects/rust_tests",
 ]
