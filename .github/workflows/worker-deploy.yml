@@ -1,18 +1,35 @@
 name: Deploy Cloudflare Worker
 
 on:
-  push:
-    branches: [ "main" ]
-#    paths: [ 'link-shortener/**' ]
-  pull_request:
-    branches: [ "main" ]
-#    paths: [ 'link-shortener/**' ]
+  workflow_run:
+    workflows: ["Rust Tests"]
+    types:
+      - completed
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      run-job: ${{ steps.filter.outputs.run }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Check for file changes
+        id: filter
+        uses: dorny/paths-filter@v2
+        with:
+          filters: |
+            changes:
+              - 'projects/cloudflare_worker_hello_rust/**'
+
   deploy:
+    needs: check-changes
+    if: needs.check-changes.outputs.run-job == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     name: Deploy Worker Hello Rust
