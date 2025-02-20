@@ -6,5 +6,5 @@ members = [
     "projects/person_manager",
     "projects/lost_crypto_drive",
     "projects/rust_tests",
-    "projects/cloudflare_worker_hello_rust",
+    "projects/cloudflare_worker_hello_rust"
 ]
